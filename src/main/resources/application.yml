@@ -1,24 +1,31 @@
+spring:
+#database
+  datasource:
+    url: jdbc:postgresql://localhost:${DATABASE_PORT}/KMS
+    username: postgres
+    password: postgres
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+#liquibase
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
 # messages.properties
-directoryNameNotEmpty:
-  validation:
-    message: the folder name cannot be empty
-
-directoryNameSize:
-  validation:
-    message: the folder name can be from 1 to 100 characters
-
-contentNameNotEmpty:
-  validation:
-    message: the content name cannot be empty
-
-contentNameSize:
-  validation:
-    message: the content name can be from 1 to 100 characters
-
-contentLinkNotEmpty:
-  validation:
-    message: the content link cannot be empty
-
-commentNameSize:
-  validation:
-    message: max size comment 2000 chars
+validation:
+  message:
+    directory:
+      name:
+        notEmpty: the folder name cannot be empty
+        size: the folder name can be from 1 to 100 characters
+    content:
+      name:
+        notEmpty: the content name cannot be empty
+        size: the content name can be from 1 to 100 characters
+      link:
+        notEmpty: the content link cannot be empty
+      comment:
+        size: max size comment 2000 chars

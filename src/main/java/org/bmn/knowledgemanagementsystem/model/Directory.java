@@ -36,11 +36,11 @@ public class Directory {
     private Long id;
 
     @NotEmpty(
-            message= "{directoryNameNotEmpty.validation.message}")
+            message= "{validation.message.directory.name.notEmpty}")
     @Size(
             min=1,
             max=100,
-            message="{directoryNameSize.validation.message}")
+            message="{validation.message.directory.name.size}")
     @Column(name = "NAME", unique = true)
     private String name;
 

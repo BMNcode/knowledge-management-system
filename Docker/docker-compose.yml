@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: KMS
+    build:
+      context: services/postgres
+      dockerfile: Dockerfile.development
+    ports:
+      - "5477:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=KMS
+    volumes:
+      - database-data:/var/lib/pgsql/data/
+
+volumes:
+  database-data:

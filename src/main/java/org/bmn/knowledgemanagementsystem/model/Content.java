@@ -33,20 +33,20 @@ public class Content{
     private Long id;
 
     @NotEmpty(
-            message= "{contentNameNotEmpty.validation.message}")
+            message= "{validation.message.content.name.notEmpty}")
     @Size(
             min=1,
             max=255,
-            message="{contentNameSize.validation.message}")
+            message="{validation.message.content.name.size}")
     @Column(name = "NAME", unique = true)
     private String name;
 
     @NotEmpty(
-            message= "{contentLinkNotEmpty.validation.message}")
+            message= "{validation.message.content.link.noeEmpty}")
     @Column(name = "LINK", unique = true)
     private String link;
 
-    @Size(max=2040, message="{commentNameSize.validation.message}")
+    @Size(max=2040, message="{validation.message.content.comment.size}")
     @Column(name = "COMMENT")
     private String comment;
 
