@@ -1,2 +1,3 @@
 databaseChangeLog:
-  include: 'db/changelog/v-1.0/changelog-v.1.0-cumulative.yaml'
+  - include:
+      file: db/changelog/v-1.0/changelog-v.1.0-cumulative.yaml

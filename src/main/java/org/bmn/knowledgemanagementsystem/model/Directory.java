@@ -17,7 +17,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class Directory {
 
     @Id

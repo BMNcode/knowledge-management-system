@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class Content{
 
     @Id
