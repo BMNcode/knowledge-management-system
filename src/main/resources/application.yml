@@ -1,0 +1,24 @@
+# messages.properties
+directoryNameNotEmpty:
+  validation:
+    message: the folder name cannot be empty
+
+directoryNameSize:
+  validation:
+    message: the folder name can be from 1 to 100 characters
+
+contentNameNotEmpty:
+  validation:
+    message: the content name cannot be empty
+
+contentNameSize:
+  validation:
+    message: the content name can be from 1 to 100 characters
+
+contentLinkNotEmpty:
+  validation:
+    message: the content link cannot be empty
+
+commentNameSize:
+  validation:
+    message: max size comment 2000 chars

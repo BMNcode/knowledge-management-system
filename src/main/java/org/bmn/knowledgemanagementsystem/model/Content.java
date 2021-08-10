@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Table(name = "content")
+@Table(name = "CONTENT")
 @Entity
 @Setter
 @Getter
@@ -28,21 +28,26 @@ public class Content{
                     @Parameter(name = "increment_size", value = "1")
             }
     )
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @Setter(value = AccessLevel.NONE)
     private Long id;
 
-    @NotEmpty(message= "{validation.contentName.NotEmpty.message}")
-    @Size(min=1, max=500, message="{validation.contentName.Size.message}")
-    @Column(name = "name")
+    @NotEmpty(
+            message= "{contentNameNotEmpty.validation.message}")
+    @Size(
+            min=1,
+            max=255,
+            message="{contentNameSize.validation.message}")
+    @Column(name = "NAME", unique = true)
     private String name;
 
-    @NotEmpty(message= "{validation.contentLink.NotEmpty.message}")
-    @Column(name = "link")
+    @NotEmpty(
+            message= "{contentLinkNotEmpty.validation.message}")
+    @Column(name = "LINK", unique = true)
     private String link;
 
-    @Size(max=2000, message="{validation.commentName.Size.message}")
-    @Column(name = "name")
+    @Size(max=2040, message="{commentNameSize.validation.message}")
+    @Column(name = "COMMENT")
     private String comment;
 
     @Override

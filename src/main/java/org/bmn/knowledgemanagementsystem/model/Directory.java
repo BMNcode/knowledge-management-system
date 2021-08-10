@@ -7,8 +7,11 @@ import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-@Table(name = "directory")
+@Table(name = "DIRECTORY")
 @Entity
 @Setter
 @Getter
@@ -28,16 +31,31 @@ public class Directory {
                     @Parameter(name = "increment_size", value = "1")
             }
     )
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @Setter(value = AccessLevel.NONE)
     private Long id;
 
-    @NotEmpty(message= "{validation.directoryName.NotEmpty.message}")
-    @Size(min=1, max=100, message="{validation.directoryName.Size.message}")
-    @Column(name = "name")
+    @NotEmpty(
+            message= "{directoryNameNotEmpty.validation.message}")
+    @Size(
+            min=1,
+            max=100,
+            message="{directoryNameSize.validation.message}")
+    @Column(name = "NAME", unique = true)
     private String name;
 
-    private Coll
+    @ElementCollection
+    @CollectionTable(name = "DEPENDENT_DIRECTORY")
+    @OrderColumn
+    @Column(name = "SUBDIRECTORIES")
+    private List<Directory> directories = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(
+            name = "CONTENT_ID",
+            nullable = false
+    )
+    private Collection<Content> contents;
 
     @Override
     public boolean equals(Object o) {
