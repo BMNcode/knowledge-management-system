@@ -1,4 +1,14 @@
 databaseChangeLog:
+
+- changeSet:
+    id: 1-0
+    author: mbulenkov
+    changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: id_sequence
+            startValue: 1000
+
 - changeSet:
     id: 1-1
     author: mbulenkov
@@ -21,7 +31,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         - column:
             name: comment
-            type: VARCHAR(255)
+            type: VARCHAR(2040)
             constraints:
               nullable: false
         - column:
@@ -38,6 +48,18 @@ databaseChangeLog:
         - column:
             name: directory_id
             type: BIGINT
+            constraints:
+              nullable: false
+              primaryKey: true
+        - column:
+            name: directories_id
+            type: BIGINT
+            constraints:
+              nullable: false
+              primaryKey: true
+        - column:
+            name: directories_order
+            type: INTEGER
             constraints:
               nullable: false
         tableName: dependent_directory
@@ -58,7 +80,7 @@ databaseChangeLog:
               primaryKeyName: pk_directory
         - column:
             name: name
-            type: VARCHAR(255)
+            type: VARCHAR(100)
         tableName: directory
 
 - changeSet:
