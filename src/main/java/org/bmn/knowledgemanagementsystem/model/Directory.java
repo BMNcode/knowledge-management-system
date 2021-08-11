@@ -1,6 +1,7 @@
 package org.bmn.knowledgemanagementsystem.model;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -47,6 +48,7 @@ public class Directory {
     @CollectionTable(name = "DEPENDENT_DIRECTORY")
     @OrderColumn
     @Column(name = "SUBDIRECTORIES")
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     private List<Directory> directories = new ArrayList<>();
 
     @OneToMany

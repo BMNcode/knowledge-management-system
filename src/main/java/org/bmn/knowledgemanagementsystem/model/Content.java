@@ -45,6 +45,8 @@ public class Content{
     @Column(name = "LINK", unique = true)
     private String link;
 
+    //TODO add date create content
+
     @Size(max=2040, message="{validation.message.content.comment.size}")
     @Column(name = "COMMENT")
     private String comment;
