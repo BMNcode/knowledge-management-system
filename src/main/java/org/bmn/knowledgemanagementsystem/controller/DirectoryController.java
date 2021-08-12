@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/")
 public class DirectoryController {
 
-    private final Logger logger = LoggerFactory.getLogger(DirectoryController.class);
+    private static final Logger logger = LoggerFactory.getLogger(DirectoryController.class);
 
     private final DirectoryService directoryService;
 
@@ -26,20 +26,20 @@ public class DirectoryController {
 
     @GetMapping("/{directory_name}")
     public ResponseEntity<Directory> getDirectory(@PathVariable(value = "directory_name") String rootName) {
-        logger.info(">>>>>>> show directory ");
+        logger.debug(">>>>>>> show directory ");
         return ResponseEntity.ok(directoryService.findByName(rootName));
     }
 
     @PostMapping
     public Directory createDirectory(@Valid @RequestBody Directory directory) {
-        logger.info(">>>>>>> create directory ");
+        logger.debug(">>>>>>> create directory ");
         return directoryService.save(directory);
     }
 
     @PutMapping("/{directory_name}")
     public Directory createSubDirectory(@Valid @RequestBody Directory directory,
                                         @PathVariable(value = "directory_name") String root) {
-        logger.info(">>>>>>> create subdirectory ");
+        logger.debug(">>>>>>> create subdirectory ");
         return directoryService.createSubDirectory(directory, root);
     }
 }
