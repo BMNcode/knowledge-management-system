@@ -2,3 +2,6 @@ databaseChangeLog:
   - include:
       file: 2021-08-10--01-create_directory_and_content.yaml
       relativeToChangelogFile: true
+  - include:
+      file: 2021-08-13--01-add_branch_change_directory.yaml
+      relativeToChangelogFile: true

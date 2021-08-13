@@ -5,22 +5,18 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.List;
 
-@Table(
-        name = "DIRECTORY",
-        uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndDepthLevel", columnNames = {"NAME", "DEPTH_LEVEL"})})
+@Table(name = "BRANCH")
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Directory {
+public class Branch {
 
     @Id
     @GeneratedValue(generator = "id-generator")
@@ -38,12 +34,11 @@ public class Directory {
     private Long id;
 
     @NotEmpty(
-            message= "{validation.message.directory.name.notEmpty}")
+            message= "{validation.message.branch.name.notEmpty}")
     @Size(
-            min=1,
             max=100,
-            message="{validation.message.directory.name.size}")
-    @Column(name = "NAME")
+            message="{validation.message.branch.name.size}")
+    @Column(name = "NAME", unique = true)
     private String name;
 
     @Column(name = "CREATED")
@@ -52,22 +47,12 @@ public class Directory {
     @Column(name = "MODIFIED")
     private LocalDateTime modified;
 
-    @DecimalMin(
-            value = "1",
-            message = "{validation.message.directory.depthLevel.minSize}")
-    @DecimalMax(
-            value = "1000",
-            message = "{validation.message.directory.depthLevel.maxSize}"
-    )
-    @Column(name = "DEPTH_LEVEL")
-    private Integer depthLevel;
-
-    @OneToMany
-    @JoinColumn(
-            name = "CONTENT_ID",
-            nullable = false
-    )
-    private Collection<Content> contents;
+    @ElementCollection
+    @CollectionTable(name = "BRANCH_DIRECTORIES")
+    @OrderColumn
+    @Column(name = "SUBDIRECTORIES")
+//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    List<Directory> directories;
 
     @PrePersist
     void onCreate() {
@@ -84,8 +69,8 @@ public class Directory {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return true;
-        if (!(o instanceof Directory)) return false;
-        Directory that = (Directory) o;
+        if (!(o instanceof Branch)) return false;
+        Branch that = (Branch) o;
         return this.getName().equals(that.getName());
     }
 

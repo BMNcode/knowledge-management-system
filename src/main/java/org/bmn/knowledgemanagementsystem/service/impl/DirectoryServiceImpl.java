@@ -44,7 +44,7 @@ public class DirectoryServiceImpl implements DirectoryService {
         Directory root = directoryRepository.findByName(rootName);
         List<Directory> directories = new ArrayList<>();
         directories.add(directory);
-        root.getDirectories().add(directory);
+//        root.getDirectories().add(directory);
         directoryRepository.save(root);
         return root;
     }
