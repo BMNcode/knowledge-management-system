@@ -23,9 +23,9 @@ spring:
 # logging.level.=INFO
   logging:
     level:
-      org.springframework: ERROR
-      org.mbn: DEBUG
-      hibernate: DEBUG
+      org.springframework: WARN
+      org.mbn: WARN
+      hibernate: WARN
     pattern:
     # temp folder example
     #logging.file=${java.io.tmpdir}/app.log

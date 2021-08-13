@@ -36,5 +36,8 @@ out/
 ### Other ###
 .jpb
 
+### logs ###
+logs/
+
 ### VS Code ###
 .vscode/
