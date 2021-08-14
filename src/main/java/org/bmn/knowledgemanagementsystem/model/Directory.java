@@ -80,6 +80,8 @@ public class Directory {
         this.setModified(LocalDateTime.now());
     }
 
+    //TODO add auto depthLevel
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

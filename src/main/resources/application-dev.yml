@@ -1,0 +1,36 @@
+#=============
+# database
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_URL}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  #=============
+  # liquibase
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  output:
+    ansi:
+      enabled=ALWAYS:
+  #=============
+  # logging level
+  # if no active profile, default is 'default'
+  # spring.profiles.active=prod
+  # root level
+  # logging.level.=INFO
+  logging:
+    level:
+      org.springframework: TRACE
+      org.mbn: TRACE
+      hibernate: TRACE
+    pattern:
+      # temp folder example
+      #logging.file=${java.io.tmpdir}/app.log
+      console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"

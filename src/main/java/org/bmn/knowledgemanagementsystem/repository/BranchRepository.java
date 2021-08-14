@@ -1,9 +1,8 @@
 package org.bmn.knowledgemanagementsystem.repository;
 
 import org.bmn.knowledgemanagementsystem.model.Branch;
-import org.bmn.knowledgemanagementsystem.model.Directory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DirectoryRepository extends JpaRepository<Directory, Long> {
-    Directory findByName(String name);
+public interface BranchRepository extends JpaRepository<Branch, Long> {
+    Branch findByName(String name);
 }
