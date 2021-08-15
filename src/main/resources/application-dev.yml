@@ -16,9 +16,6 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
 
-  output:
-    ansi:
-      enabled=ALWAYS:
   #=============
   # logging level
   # if no active profile, default is 'default'
@@ -27,10 +24,10 @@ spring:
   # logging.level.=INFO
   logging:
     level:
-      org.springframework: TRACE
-      org.mbn: TRACE
-      hibernate: TRACE
-    pattern:
-      # temp folder example
-      #logging.file=${java.io.tmpdir}/app.log
-      console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+      org.springframework: DEBUG
+      org.mbn: DEBUG
+#      hibernate: TRACE
+#    pattern:
+#      # temp folder example
+#      #logging.file=${java.io.tmpdir}/app.log
+#      console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"

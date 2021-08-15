@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Table(
         name = "DIRECTORY",
@@ -20,6 +21,7 @@ import java.util.Collection;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
+@ToString
 public class Directory {
 
     @Id
@@ -61,6 +63,13 @@ public class Directory {
     )
     @Column(name = "DEPTH_LEVEL")
     private Integer depthLevel;
+
+    @ElementCollection
+    @CollectionTable(name = "BRANCH_DIRECTORIES")
+    @OrderColumn
+    @Column(name = "SUBDIRECTORIES")
+//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    List<Directory> directories;
 
     @OneToMany
     @JoinColumn(

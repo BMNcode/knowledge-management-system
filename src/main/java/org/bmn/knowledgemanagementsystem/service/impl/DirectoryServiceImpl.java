@@ -1,8 +1,10 @@
 package org.bmn.knowledgemanagementsystem.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.bmn.knowledgemanagementsystem.model.Directory;
 import org.bmn.knowledgemanagementsystem.repository.DirectoryRepository;
 import org.bmn.knowledgemanagementsystem.service.DirectoryService;
+import org.dom4j.Branch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Transactional
 @Service("directoryService")
+@Slf4j
 public class DirectoryServiceImpl implements DirectoryService {
 
     private final DirectoryRepository directoryRepository;
@@ -23,8 +26,12 @@ public class DirectoryServiceImpl implements DirectoryService {
 
 
     @Override
-    public Directory save(Directory directory) {
-        return directoryRepository.save(directory);
+    public Directory saveBranch(Directory branch) {
+        log.info(DirectoryServiceImpl.class.getSimpleName() + " ---> saveBranch: " + branch.toString());
+        if (directoryRepository.findByName(branch.getName()) != null) {
+            
+        }
+        return directoryRepository.save(branch);
     }
 
     @Override

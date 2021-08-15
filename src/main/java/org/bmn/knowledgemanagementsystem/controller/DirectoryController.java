@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/{anch_name}")
+@RequestMapping("/")
 @Slf4j
 public class DirectoryController {
 
@@ -21,17 +21,17 @@ public class DirectoryController {
         this.directoryService = directoryService;
     }
 
-    @GetMapping("/{directory_name}")
-    public ResponseEntity<Directory> getDirectory(@PathVariable(value = "directory_name") String rootName) {
-        log.debug(">>>>>>> show directory ");
-        return ResponseEntity.ok(directoryService.findByName(rootName));
-    }
-
-//    @PostMapping
-//    public Directory createDirectory(@Valid @RequestBody Directory directory) {
-//        log.debug(">>>>>>> create directory ");
-//        return directoryService.save(directory);
+//    @GetMapping("/{directory_name}")
+//    public ResponseEntity<Directory> getDirectory(@PathVariable(value = "directory_name") String rootName) {
+//        log.debug(">>>>>>> show directory ");
+//        return ResponseEntity.ok(directoryService.findByName(rootName));
 //    }
+
+    @PostMapping
+    public Directory createBranch(@Valid @RequestBody Directory branch) {
+        log.info(DirectoryController.class.getSimpleName() + " ---> create branch : " + branch.toString());
+        return directoryService.saveBranch(branch);
+    }
 
 //    @PutMapping("/{directory_name}")
 //    public Directory createSubDirectory(@Valid @RequestBody Directory directory,

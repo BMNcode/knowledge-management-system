@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DirectoryService {
 
-    Directory save(Directory directory);
+    Directory saveBranch(Directory branch);
 
     Directory findById(Long id);
 

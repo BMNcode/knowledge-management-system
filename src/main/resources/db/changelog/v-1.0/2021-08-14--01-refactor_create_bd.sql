@@ -1,18 +1,11 @@
 create sequence id_sequence start 1000 increment 1;
 
-create table branch (
-	id                  int8            not null,
-	created             timestamp,
-	modified            timestamp,
-	name                varchar(100),
-	primary key (id)
-);
-
 create table branch_directories (
-	branch_id           int8            not null,
+	directory_id        int8            not null,
 	directories_id      int8            not null,
 	directories_order   int4            not null,
-	primary key (branch_id, directories_order)
+	primary key
+	    (directory_id, directories_order)
 );
 
 create table content (
@@ -20,9 +13,10 @@ create table content (
 	comment             varchar(2040),
 	link                varchar(255),
 	name                varchar(255),
-	content_id          int8            not null,
+	content_id int8                     not null,
 	primary key (id)
 );
+
 create table directory (
 	id                  int8            not null,
 	created             timestamp,
@@ -31,10 +25,6 @@ create table directory (
 	name                varchar(100),
 	primary key (id)
 );
-
-alter table if exists branch
-    add constraint UK_2qdmejoguc37exo9i2fjxb0qo
-    unique (name);
 
 alter table if exists branch_directories
     add constraint UK_f0aq7qwl5eoo7b7j4kdi59xkd
@@ -57,8 +47,8 @@ alter table if exists branch_directories
     foreign key (directories_id) references directory;
 
 alter table if exists branch_directories
-    add constraint FKhk5nuf8avjhji452qha3124bi
-    foreign key (branch_id) references branch;
+    add constraint FK26yw0fml9ctdxtp5bov87pge8
+    foreign key (directory_id) references directory;
 
 alter table if exists content
     add constraint FK2qhuu8e9c3ql68pchjerm1f8g
